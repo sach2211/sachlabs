@@ -9,9 +9,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "prepublish": "now rm sachlabs --yes",
+    "prepublish": "npm version patch && now rm sachlabs --yes",
     "publish": "now --public",
-    "postpublish": "now alias"
+    "postpublish": "now alias && git push origin master --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sach2211/sachlabs.git"
   },
   "author": "sach2211",
   "license": "GPL-3.0",
