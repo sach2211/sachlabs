@@ -1,0 +1,21 @@
+{
+  "name": "sachlabs",
+  "version": "1.0.0",
+  "description": "Personal homepage hosted on zeit",
+  "main": "src/index.js",
+  "now": {
+    "alias": ["sachin", "sachlabs"]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "prepublish": "now rm sachlabs --yes",
+    "publish": "now --public",
+    "postpublish": "now alias"
+  },
+  "author": "sach2211",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "~4.16.3"
+  }
+}
