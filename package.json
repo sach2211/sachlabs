@@ -12,11 +12,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "prepublish": "npm version patch && now rm sachlabs --yes",
+    "prepublish": "NODE_ENV=production webpack && npm version patch && now rm sachlabs --yes",
     "publish": "now --public",
     "postpublish": "now alias && git push origin master --tags",
     "publish-dev": "now --public",
-    "webpack": "webpack --config=./webpack.config.js"
+    "webpack": "webpack"
   },
   "repository": {
     "type": "git",
