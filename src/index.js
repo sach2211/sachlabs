@@ -12,7 +12,7 @@ const path = require("path");
 // Make this directory available.
 // Thus, index.html, chunk js and other files in this directory will be directly available.
 // This will also allow our html file to request the js file.
-
+// https://expressjs.com/en/starter/static-files.html
 app.use(express.static(path.join(__dirname, '../public')));
 
 // request to root are redirect to index.html
@@ -21,8 +21,8 @@ app.get("/", (req, res, next) => {
     res.redirect('/index.html');
 });
 
-app.get("/projects", (req, res, next) => {
-    res.status(200).send('Under maintenance, will be back in a few days');
+app.get("/reaction", (req, res, next) => {
+    res.redirect('/reactiontime.html');
 });
 
 // 404 for all other routes.

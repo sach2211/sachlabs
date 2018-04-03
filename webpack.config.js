@@ -1,13 +1,18 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // The entry path - should be a absolute path.
-  entry: path.join(__dirname + '/src/views/index.js'),
+  entry: {
+    index: path.join(__dirname + '/src/views/index.js'),
+    reactiontime: path.join(__dirname + '/src/views/reaction-time.js')
+  },
   
   // The output path object.
+  // generate a different bundle for each entry point.
   output: {
     path: path.join(__dirname + '/public/'),
-    filename: 'chunk.js'
+    filename: 'chunk-[name].js'
   },
   
   module: {
@@ -24,5 +29,24 @@ module.exports = {
     ]
   },
 
+  plugins: [
+    // Generate a seperate HTML and bundle for each part.
+    new HtmlWebpackPlugin({
+      inject: "true",
+      chunks: ['index'],
+      template: './public/template.html',
+      filename: 'index.html', // filenames should not include the prefix/suffix defined in output object.
+    }),
+
+    new HtmlWebpackPlugin({
+      inject: "true",
+      filename: 'reactiontime.html',
+      template: './public/template.html',
+      chunks: ['reactiontime']
+    })
+  ],
+  
   mode: process.env.NODE_ENV || 'development'
 };
+
+
