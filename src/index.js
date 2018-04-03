@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 
 const path = require("path");
-// const html = require("./views/index.html");
+
+
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get("/", (req, res, next) => {
-    res.sendFile(__dirname + '/views/index.html');
-    // res.send("This site will be up in a few days !! Thanks for your patience")
+    // res.sendFile (path.join(__dirname, '../public/index.html'));
+    res.redirect('/index.html');
 });
 
 app.get("/projects", (req, res, next) => {
