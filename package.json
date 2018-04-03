@@ -1,6 +1,6 @@
 {
   "name": "sachlabs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Personal homepage hosted on zeit",
   "main": "src/index.js",
   "now": {
