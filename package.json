@@ -14,7 +14,8 @@
     "start": "node src/index.js",
     "prepublish": "npm version patch && now rm sachlabs --yes",
     "publish": "now --public",
-    "postpublish": "now alias && git push origin master --tags"
+    "postpublish": "now alias && git push origin master --tags",
+    "publish-dev": "now --public"
   },
   "repository": {
     "type": "git",
