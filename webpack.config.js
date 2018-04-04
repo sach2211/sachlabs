@@ -17,15 +17,25 @@ module.exports = {
   
   module: {
     rules: [
-
       {
         // Use babel to transpile JSX and ES6 features.
         // The presets are important - specified in .babelrc
         test: /\.(js|jsx)$/,
         exclude: path.join(__dirname + '/node_modules/'),
         use: 'babel-loader'
+      },
+      {
+        // Use babel to transpile JSX and ES6 features.
+        // The presets are important - specified in .babelrc
+        test: /\.css$/,
+        exclude: path.join(__dirname + '/node_modules/'),
+        use: [
+          // puts the CSS string extracted by css-loader into a <style> tag in head
+          'style-loader', 
+          // extracts the entire CSS into a string.
+          'css-loader'
+        ]
       }
-
     ]
   },
 
