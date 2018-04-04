@@ -1,13 +1,50 @@
 import React, { PureComponent } from 'react';
+import Table from '../Table';
 import './style.css';
 
 export default class ReactionTime extends PureComponent {
+  
+  constructor() {
+    super();
+    this.state = {
+      results: []
+    }
+  }
+
+  updateResults = (score) => {
+    let updatedResults = this.state.results.map((v) => v);
+    updatedResults.push(score);
+    this.setState({ results: updatedResults });
+  }
+
   render() {
     return (
-      <div className='rt-wrapper'>
-          <h2> Reaction Time </h2>
-          <h3> Instructions </h3>
-          <Game />
+      <div className='rtPage'>
+
+        {/* Game Area */}
+        <div className='gameArea'>
+          <div className='rt-wrapper'>
+              <div>
+                <h1><u> Reaction Time </u></h1>
+                <h3> A game to test reaction time of your Brain </h3>
+              </div>
+              <div>
+                <h2> Instructions </h2>
+                <ul>
+                  <li> Click the box as soon as it turns PINK </li>
+                  <li> Repeat for 5 times </li>
+                  <li> Finally, your median score will be visible on screen </li>
+                </ul>
+              </div>  
+              <Game updateResults={this.updateResults} />
+          </div>
+        </div>
+
+        {/* Scoreboard Area */}
+        <div className='scoreArea'>
+          <h1> Scoreboard Area of game </h1>
+          <Table data={this.state.results}/>
+        </div>
       </div>
     );
   }
@@ -21,8 +58,7 @@ class Game extends PureComponent {
     this.state = {
       boxState: 'wait',
       evaluationsDone: 0,
-      performanceTime: [],
-      results: []
+      performanceTime: []
     }
   }
 
@@ -34,7 +70,7 @@ class Game extends PureComponent {
     // store the result
     let x = this.state.performanceTime.pop();
     let y = this.state.performanceTime.pop();
-    this.state.results.push((x-y));
+    this.props.updateResults([`Attempt ${this.state.evaluationsDone + 1} : `,  Math.floor(x-y)]);
 
     // increment the counter, reset to wait state
     this.setState({ 
