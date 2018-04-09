@@ -1,6 +1,5 @@
 import { render } from 'react-dom';
 import React from 'react';
-import Box from '../components/Block';
+import Page from '../components/website';
 
-console.log("Does exist ? ", document.getElementById('react-root'));
-render(<Box />, document.getElementById('react-root'));
+render(<Page />, document.getElementById('react-root'));
